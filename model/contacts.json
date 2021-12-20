@@ -77,18 +77,19 @@
   },
   {
     "id": "a3e788cc-6a5e-40dc-a79d-5085a3b8624b",
-    "name": "John",
-    "email": "mary@mail.com"
-  },
-  {
-    "id": "16472ca1-0bd9-4f76-8c1b-da6838bc7f30",
-    "name": "Bob",
-    "email": "mary@mail.com"
+    "name": "John 2",
+    "email": "john-new-mail@mail.com"
   },
   {
     "id": "61110599-9526-45c7-89bd-bd6a44f0e63a",
     "name": "Jacob",
     "email": "jacob@mail.com",
     "phone": "888-88-88"
+  },
+  {
+    "id": "11bd33fe-173c-4f31-9143-f293ba38b2b9",
+    "name": "Kate",
+    "email": "kate@mail.com",
+    "phone": "111-11-11"
   }
 ]
