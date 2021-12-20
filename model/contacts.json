@@ -52,44 +52,5 @@
     "name": "Thomas Lucas",
     "email": "nec@Nulla.com",
     "phone": "(704) 398-7993"
-  },
-  {
-    "id": "10",
-    "name": "Alec Howard",
-    "email": "Donec.elementum@scelerisquescelerisquedui.net",
-    "phone": "(748) 206-2688"
-  },
-  {
-    "id": "954f53a9-b768-4356-aceb-5e6a1951edd5",
-    "name": "Mary",
-    "email": "mary@mail.com",
-    "phone": "777-77-77"
-  },
-  {
-    "id": "8598c45b-39c6-4693-808d-ea4f84fca28c",
-    "name": "John",
-    "email": "mary@mail.com"
-  },
-  {
-    "id": "51875cdc-8e1d-446a-bedd-37bfc1553f7c",
-    "name": "John",
-    "email": "mary@mail.com"
-  },
-  {
-    "id": "a3e788cc-6a5e-40dc-a79d-5085a3b8624b",
-    "name": "John 2",
-    "email": "john-new-mail@mail.com"
-  },
-  {
-    "id": "61110599-9526-45c7-89bd-bd6a44f0e63a",
-    "name": "Jacob",
-    "email": "jacob@mail.com",
-    "phone": "888-88-88"
-  },
-  {
-    "id": "11bd33fe-173c-4f31-9143-f293ba38b2b9",
-    "name": "Kate",
-    "email": "kate@mail.com",
-    "phone": "111-11-11"
   }
 ]

@@ -1,14 +1,14 @@
 import { Router } from "express";
-import model from "../../model/index.js";
+import model from "../../model/index";
 
 const router = new Router();
 
-router.get("/", async (req, res, next) => {
+router.get("/", async (_req, res, _next) => {
   const contacts = await model.listContacts();
   res.status(200).json(contacts);
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", async (req, res, _next) => {
   const { id } = req.params;
   const contact = await model.getContactById(id);
   if (contact) {
@@ -17,7 +17,7 @@ router.get("/:id", async (req, res, next) => {
   res.status(404).json({ message: "Not found" });
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", async (req, res, _next) => {
   const { name, email, phone } = req.body;
   if (name && email && phone) {
     const newContact = await model.addContact(req.body);
@@ -26,7 +26,7 @@ router.post("/", async (req, res, next) => {
   res.status(404).json({ message: "missing required name field" });
 });
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", async (req, res, _next) => {
   const { id } = req.params;
   const delContact = await model.removeContact(id);
   if (delContact) {
@@ -35,15 +35,15 @@ router.delete("/:id", async (req, res, next) => {
   res.status(404).json({ message: "Not found" });
 });
 
-router.put("/:id", async (req, res, next) => {
-  console.log(req.body);
+router.put("/:id", async (req, res, _next) => {
+  // console.log(req.body);
   if (JSON.stringify(req.body) === "{}") {
     return res.status(400).json({ message: "missing fields" });
   }
   const { id } = req.params;
   const updContact = await model.updateContact(id, req.body);
   if (updContact) {
-    return res.status(201).json(updContact);
+    return res.status(200).json(updContact);
   }
   res.status(404).json({ message: "Not found" });
 });

@@ -2,7 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import { randomUUID } from "crypto";
 import chalk from "chalk";
-import contacts from "./contacts.json";
+import contacts from "./contacts";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -22,13 +22,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // };
 
 const listContacts = async () => {
-  // try {
-  //   return await contactsPath();
-  return contacts;
-  // } catch (error) {
-  //   console.error(chalk.bgRed(error));
-  //   process.exit(1);
-  // }
+  try {
+    //   return await contactsPath();
+    return contacts;
+  } catch (error) {
+    console.error(chalk.bgRed(error));
+    process.exit(1);
+  }
 };
 
 const getContactById = async (contactId) => {
@@ -45,17 +45,21 @@ const getContactById = async (contactId) => {
 const removeContact = async (contactId) => {
   try {
     // const contacts = await contactsPath();
-    const index = contacts.findIndex((contact) => contact.id === contactId);
-    const delContact = contacts.splice(index, 1);
 
-    // const newContacts = contacts.filter((item) => item.id !== contactId);
-    // const [delContact] = contacts.filter((item) => item.id === contactId);
+    // const index = contacts.findIndex((contact) => contact.id === contactId);
+    // if (index !== -1) {
+    // const delContact = contacts.splice(index, 1);
+
+    const newContacts = contacts.filter((item) => item.id !== contactId);
+    const [delContact] = contacts.filter((item) => item.id === contactId);
     await fs.writeFile(
       path.join(__dirname, "contacts.json"),
-      // JSON.stringify(newContacts, null, 2)
-      JSON.stringify(contacts, null, 2)
+      JSON.stringify(newContacts, null, 2)
+      // JSON.stringify(contacts, null, 2)
     );
     return delContact;
+    // }
+    // return null;
   } catch (error) {
     console.error(chalk.bgRed(error));
     process.exit(1);
