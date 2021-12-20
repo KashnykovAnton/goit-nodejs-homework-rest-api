@@ -41,6 +41,24 @@ const getContactById = async (contactId) => {
     process.exit(1);
   }
 };
+// получает body!!!!
+// const addContact = async (name, email, phone) => {
+const addContact = async (body) => {
+  try {
+    // const contacts = await contactsPath();
+    // const newContact = { id: randomUUID(), name, email, phone };
+    const newContact = { id: randomUUID(), ...body };
+    contacts.push(newContact);
+    await fs.writeFile(
+      path.join(__dirname, "contacts.json"),
+      JSON.stringify(contacts, null, 2)
+    );
+    return newContact;
+  } catch (error) {
+    console.error(chalk.bgRed(error));
+    process.exit(1);
+  }
+};
 
 const removeContact = async (contactId) => {
   try {
@@ -60,25 +78,6 @@ const removeContact = async (contactId) => {
     return delContact;
     // }
     // return null;
-  } catch (error) {
-    console.error(chalk.bgRed(error));
-    process.exit(1);
-  }
-};
-
-// получает body!!!!
-// const addContact = async (name, email, phone) => {
-const addContact = async (body) => {
-  try {
-    // const contacts = await contactsPath();
-    // const newContact = { id: randomUUID(), name, email, phone };
-    const newContact = { id: randomUUID(), ...body };
-    contacts.push(newContact);
-    await fs.writeFile(
-      path.join(__dirname, "contacts.json"),
-      JSON.stringify(contacts, null, 2)
-    );
-    return newContact;
   } catch (error) {
     console.error(chalk.bgRed(error));
     process.exit(1);
