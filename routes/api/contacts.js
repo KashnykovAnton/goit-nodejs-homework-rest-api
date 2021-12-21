@@ -1,5 +1,6 @@
 import { Router } from "express";
 import model from "../../model/index";
+import { validateCreate, validateUpdate } from "./validation";
 
 const router = new Router();
 
@@ -17,13 +18,22 @@ router.get("/:id", async (req, res, _next) => {
   res.status(404).json({ message: "Not found" });
 });
 
-router.post("/", async (req, res, _next) => {
-  const { name, email, phone } = req.body;
-  if (name && email && phone) {
-    const newContact = await model.addContact(req.body);
-    return res.status(201).json(newContact);
-  }
-  res.status(404).json({ message: "missing required name field" });
+// router.post("/", validateCreate, async (req, res, _next) => {
+//   const { name, email, phone } = req.body;
+//   if (name && email && phone) {
+//     const newContact = await model.addContact(req.body);
+//     return res.status(201).json(newContact);
+//   }
+//   res.status(400).json({ message: "missing required name field" });
+// });
+
+router.post("/", validateCreate, async (req, res, _next) => {
+  // const { name, email, phone } = req.body;
+  // if (name && email && phone) {
+  const newContact = await model.addContact(req.body);
+  return res.status(201).json(newContact);
+  // }
+  // res.status(400).json({ message: "missing required name field" });
 });
 
 router.delete("/:id", async (req, res, _next) => {
@@ -35,11 +45,10 @@ router.delete("/:id", async (req, res, _next) => {
   res.status(404).json({ message: "Not found" });
 });
 
-router.put("/:id", async (req, res, _next) => {
-  // console.log(req.body);
-  if (JSON.stringify(req.body) === "{}") {
-    return res.status(400).json({ message: "missing fields" });
-  }
+router.put("/:id", validateUpdate, async (req, res, _next) => {
+  // if (JSON.stringify(req.body) === "{}") {
+  //   return res.status(400).json({ message: "missing fields" });
+  // }
   const { id } = req.params;
   const updContact = await model.updateContact(id, req.body);
   if (updContact) {

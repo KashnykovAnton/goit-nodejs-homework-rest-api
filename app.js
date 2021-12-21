@@ -3,7 +3,6 @@ import logger from "morgan";
 import cors from "cors";
 
 import contactsRouter from "./routes/api/contacts";
-// Проверить работает ли без .js !!!
 
 const app = express();
 
