@@ -7,11 +7,14 @@ const __dirname = path.dirname("model/contacts.json");
 
 const removeContact = async (contactId) => {
   try {
-    const newContacts = contacts.filter((item) => item.id !== contactId);
-    const [delContact] = contacts.filter((item) => item.id === contactId);
+    const index = contacts.findIndex((contact) => contact.id === contactId);
+    if (index === -1) {
+      return;
+    }
+    const [delContact] = contacts.splice(index, 1);
     await fs.writeFile(
       path.join(__dirname, "contacts.json"),
-      JSON.stringify(newContacts, null, 2)
+      JSON.stringify(contacts, null, 2)
     );
     return delContact;
   } catch (error) {
