@@ -5,8 +5,11 @@ import {
   addContact,
   removeContact,
   updateContact,
-} from "../../controllers/contacts";
-import { validateCreate, validateUpdate } from "./validation";
+} from "../../models/contacts";
+import {
+  validateCreate,
+  validateUpdate,
+} from "../../middlewares/validation/contactValidation";
 
 const router = new Router();
 

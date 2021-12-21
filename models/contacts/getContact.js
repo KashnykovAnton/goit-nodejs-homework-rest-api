@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import contacts from "../../model/contacts";
+import contacts from "../../db/contacts";
 
 const getContactById = async (contactId) => {
   try {

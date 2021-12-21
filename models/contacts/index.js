@@ -4,19 +4,11 @@ import addContact from "./addContact";
 import removeContact from "./removeContact";
 import updateContact from "./updateContact";
 
-// export default {
 export {
+  // export default {
   listContacts,
   getContactById,
   addContact,
   removeContact,
   updateContact,
 };
-
-// import router from "./listContacts";
-// import router from "./getContact";
-// import router from "./addContact";
-// import router from "./removeContact";
-// import router from "./updateContact";
-
-// export default router;

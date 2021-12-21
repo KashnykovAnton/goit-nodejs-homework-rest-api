@@ -2,9 +2,9 @@ import fs from "fs/promises";
 import path from "path";
 import { randomUUID } from "crypto";
 import chalk from "chalk";
-import contacts from "../../model/contacts";
+import contacts from "../../db/contacts";
 
-const __dirname = path.dirname("model/contacts.json");
+const __dirname = path.dirname("db/contacts.json");
 
 const addContact = async (body) => {
   try {
