@@ -43,14 +43,20 @@
   },
   {
     "id": "8",
-    "name": "Bob",
-    "email": "bob@mail.com",
-    "phone": "999-88-88"
+    "name": "Simon Morton",
+    "email": "dui.Fusce.diam@Donec.com",
+    "phone": "(233) 738-2360"
   },
   {
     "id": "9",
-    "name": "David",
-    "email": "david@mail.com",
-    "phone": "222-88-88"
+    "name": "Thomas Lucas",
+    "email": "nec@Nulla.com",
+    "phone": "(704) 398-7993"
+  },
+  {
+    "id": "10",
+    "name": "Alec Howard",
+    "email": "Donec.elementum@scelerisquescelerisquedui.net",
+    "phone": "(748) 206-2688"
   }
 ]
