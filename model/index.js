@@ -31,7 +31,7 @@ const addContact = async (body) => {
     const newContact = { id: randomUUID(), ...body };
     contacts.push(newContact);
     await fs.writeFile(
-      path.join(__dirname, "contacts.json"),
+      path.join(__dirname, "model", "contacts.json"),
       JSON.stringify(contacts, null, 2)
     );
     return newContact;

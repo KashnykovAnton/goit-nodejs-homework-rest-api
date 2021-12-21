@@ -12,10 +12,18 @@ const updateSchema = Joi.object({
   phone: Joi.string().optional(),
 }).or("name", "email", "phone");
 
+const idSchema = Joi.object({ id: Joi.string().required() });
+
 export const validateCreate = async (req, res, next) => {
   try {
     const value = await createSchema.validateAsync(req.body);
   } catch (err) {
+    const [{ type }] = err.details;
+    if (type === "object.unknown") {
+      return res
+        .status(400)
+        .json({ message: `${err.message.replace(/"/g, "'")}` });
+    }
     return res
       .status(400)
       .json({ message: `Missing ${err.message.replace(/"/g, "'")} field` });
@@ -27,19 +35,24 @@ export const validateUpdate = async (req, res, next) => {
   try {
     const value = await updateSchema.validateAsync(req.body);
   } catch (err) {
-    console.log(err.details);
     const [{ type }] = err.details;
     if (type === "object.unknown") {
       return res
         .status(400)
         .json({ message: `${err.message.replace(/"/g, "'")}` });
     }
-    if (type === "string.base") {
-      return res
-        .status(400)
-        .json({ message: `${err.message.replace(/"/g, "'")}` });
-    }
     return res.status(400).json({ message: `missing fields` });
+  }
+  next();
+};
+
+export const validateId = async (req, res, next) => {
+  try {
+    const value = await idSchema.validateAsync(req.params);
+  } catch (err) {
+    return res
+      .status(400)
+      .json({ message: `${err.message.replace(/"/g, "")}` });
   }
   next();
 };
