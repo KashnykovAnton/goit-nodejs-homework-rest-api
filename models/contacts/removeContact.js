@@ -3,9 +3,9 @@ import path from "path";
 import chalk from "chalk";
 import contacts from "../../db/contacts";
 
-const __dirname = path.dirname("db/contacts.json");
+const __dirname = path.dirname("db/contacts");
 
-const removeContact = async (contactId) => {
+export const removeContact = async (contactId) => {
   try {
     const index = contacts.findIndex((contact) => contact.id === contactId);
     if (index === -1) {
@@ -23,4 +23,4 @@ const removeContact = async (contactId) => {
   }
 };
 
-export default removeContact;
+// export default removeContact;

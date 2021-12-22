@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import contacts from "../../db/contacts";
 
-const listContacts = async () => {
+export const listContacts = async () => {
   try {
     return contacts;
   } catch (error) {
@@ -10,4 +10,4 @@ const listContacts = async () => {
   }
 };
 
-export default listContacts;
+// export default listContacts;

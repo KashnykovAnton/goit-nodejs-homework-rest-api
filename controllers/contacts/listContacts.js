@@ -1,6 +1,5 @@
 import { Router } from "express";
-// import { listContacts } from "../../models/contacts";
-import listContacts from "../../models/contacts";
+import { listContacts } from "../../models/contacts";
 
 const router = new Router();
 
@@ -10,3 +9,5 @@ router.get("/", async (_req, res, _next) => {
 });
 
 export default router;
+
+

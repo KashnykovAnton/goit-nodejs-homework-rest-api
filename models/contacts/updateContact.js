@@ -3,9 +3,9 @@ import path from "path";
 import chalk from "chalk";
 import contacts from "../../db/contacts";
 
-const __dirname = path.dirname("db/contacts.json");
+const __dirname = path.dirname("db/contacts");
 
-const updateContact = async (contactId, body) => {
+export const updateContact = async (contactId, body) => {
   try {
     let updContact = contacts.find((item) => item.id === contactId);
     if (!updContact) {
@@ -25,4 +25,4 @@ const updateContact = async (contactId, body) => {
   }
 };
 
-export default updateContact;
+// export default updateContact;

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import removeContact from "../../models/contacts";
+import { removeContact } from "../../models/contacts";
 
 const router = new Router();
 

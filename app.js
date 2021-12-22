@@ -3,13 +3,6 @@ import logger from "morgan";
 import cors from "cors";
 
 import contactsRouter from "./routes/api/contacts";
-// import listContacts from "./controllers/contacts/listContacts";
-// import listContacts from "./controllers/contacts/";
-
-// // import getContactById from "./controllers/contacts/index";
-// // import addContact from "./controllers/contacts/index";
-// // import removeContact from "./controllers/contacts/index";
-// // import updateContact from "./controllers/contacts/index";
 
 const app = express();
 
@@ -20,7 +13,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/contacts", contactsRouter);
-// app.use("/contacts/listContacts", listContacts);
 
 app.use((_req, res) => {
   res.status(404).json({ message: "Not found" });

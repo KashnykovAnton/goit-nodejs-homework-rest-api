@@ -4,9 +4,9 @@ import { randomUUID } from "crypto";
 import chalk from "chalk";
 import contacts from "../../db/contacts";
 
-const __dirname = path.dirname("db/contacts.json");
+const __dirname = path.dirname("db/contacts");
 
-const addContact = async (body) => {
+export const addContact = async (body) => {
   try {
     const newContact = { id: randomUUID(), ...body };
     contacts.push(newContact);
@@ -21,4 +21,4 @@ const addContact = async (body) => {
   }
 };
 
-export default addContact;
+// export default addContact;

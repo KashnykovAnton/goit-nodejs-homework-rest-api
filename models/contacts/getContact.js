@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import contacts from "../../db/contacts";
 
-const getContactById = async (contactId) => {
+export const getContactById = async (contactId) => {
   try {
     return contacts.find((item) => item.id === contactId);
   } catch (error) {
@@ -10,4 +10,4 @@ const getContactById = async (contactId) => {
   }
 };
 
-export default getContactById;
+// export default getContactById;

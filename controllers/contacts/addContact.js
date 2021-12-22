@@ -1,5 +1,5 @@
 import { Router } from "express";
-import addContact from "../../models/contacts";
+import { addContact } from "../../models/contacts";
 import { validateCreate } from "../../middlewares/validation/contactValidation";
 
 const router = new Router();
