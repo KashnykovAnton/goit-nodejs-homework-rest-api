@@ -10,6 +10,7 @@ export const addContact = async (body) => {
   try {
     const newContact = { id: randomUUID(), ...body };
     contacts.push(newContact);
+    console.log(newContact);
     await fs.writeFile(
       path.join(__dirname, "contacts.json"),
       JSON.stringify(contacts, null, 2)
