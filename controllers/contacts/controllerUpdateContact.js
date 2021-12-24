@@ -1,16 +1,10 @@
-import { Router } from "express";
 import { updateContact } from "../../models/contacts";
-import { validateUpdate } from "../../middlewares/validation/contactValidation";
 
-const router = new Router();
-
-router.put("/:id", validateUpdate, async (req, res, _next) => {
+export const controllerUpdateContact = async (req, res, _next) => {
   const { id } = req.params;
   const updContact = await updateContact(id, req.body);
   if (updContact) {
     return res.status(200).json(updContact);
   }
   res.status(404).json({ message: "Not found" });
-});
-
-export default router;
+};

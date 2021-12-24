@@ -22,5 +22,3 @@ export const removeContact = async (contactId) => {
     process.exit(1);
   }
 };
-
-// export default removeContact;

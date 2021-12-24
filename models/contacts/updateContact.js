@@ -24,5 +24,3 @@ export const updateContact = async (contactId, body) => {
     process.exit(1);
   }
 };
-
-// export default updateContact;

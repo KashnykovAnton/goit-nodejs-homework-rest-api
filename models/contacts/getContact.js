@@ -9,5 +9,3 @@ export const getContactById = async (contactId) => {
     process.exit(1);
   }
 };
-
-// export default getContactById;

@@ -9,5 +9,3 @@ export const listContacts = async () => {
     process.exit(1);
   }
 };
-
-// export default listContacts;
