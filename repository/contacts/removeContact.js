@@ -1,8 +1,14 @@
 import Contact from "../../model/Contact";
+import chalk from "chalk";
 
 export const removeContact = async (contactId) => {
-  const result = await Contact.findByIdAndRemove(contactId);
-  return result;
+  try {
+    const result = await Contact.findByIdAndRemove(contactId);
+    return result;
+  } catch (error) {
+    console.error(chalk.bgRed(error));
+    process.exit(1);
+  }
 };
 
 // import db from "../../config/db";

@@ -2,6 +2,7 @@
 
 import pkg from "mongoose";
 
+// const { model, Schema, ObjectId } = pkg;
 const { model, Schema } = pkg;
 
 const contactSchema = new Schema(
@@ -20,6 +21,7 @@ const contactSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    // _id: { parentId: ObjectId },
   },
   {
     versionKey: false,

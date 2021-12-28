@@ -11,22 +11,25 @@ import {
   validateCreate,
   validateUpdate,
   validateUpdateFavorite,
+  validateId,
+  validateQuery,
 } from "../../../middlewares/validation/contactValidation";
 
 const router = new Router();
 
-router.get("/", controllerListContacts);
+router.get("/", validateQuery, controllerListContacts);
 
-router.get("/:id", controllerGetContactById);
+router.get("/:id", validateId, controllerGetContactById);
 
 router.post("/", validateCreate, controllerAddContact);
 
-router.delete("/:id", controllerRemoveContact);
+router.delete("/:id", validateId, controllerRemoveContact);
 
-router.put("/:id", validateUpdate, controllerUpdateContact);
+router.put("/:id", validateId, validateUpdate, controllerUpdateContact);
 
 router.patch(
   "/:id/favorite",
+  validateId,
   validateUpdateFavorite,
   controllerUpdateStatusContact
 );

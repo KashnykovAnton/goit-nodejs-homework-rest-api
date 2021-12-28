@@ -1,4 +1,8 @@
 import Joi from "joi";
+import pkg from "mongoose";
+import { HttpCode } from "../../config/constants";
+
+const { Types } = pkg;
 
 const createSchema = Joi.object({
   name: Joi.string().required(),
@@ -18,6 +22,17 @@ const updateFavoriteSchema = Joi.object({
   favorite: Joi.bool().required(),
 });
 
+const regLimit = /\d+/; //  new RegExp("\\d+")
+const regFilter = /(name|email|phone)\|?(name|email|phone)+/;
+
+const querySchema = Joi.object({
+  limit: Joi.string().pattern(regLimit).optional(),
+  skip: Joi.number().min(0).optional(),
+  sortBy: Joi.string().valid("name", "email", "phone").optional(),
+  sortByDesc: Joi.string().valid("name", "email", "phone").optional(),
+  filter: Joi.string().pattern(regFilter).optional(),
+});
+
 export const validateCreate = async (req, res, next) => {
   try {
     await createSchema.validateAsync(req.body);
@@ -25,11 +40,11 @@ export const validateCreate = async (req, res, next) => {
     const [{ type }] = err.details;
     if (type === "object.unknown") {
       return res
-        .status(400)
+        .status(HttpCode.BAD_REQUEST)
         .json({ message: `${err.message.replace(/"/g, "'")}` });
     }
     return res
-      .status(400)
+      .status(HttpCode.BAD_REQUEST)
       .json({ message: `Missing ${err.message.replace(/"/g, "'")} field` });
   }
   next();
@@ -42,10 +57,10 @@ export const validateUpdate = async (req, res, next) => {
     const [{ type }] = err.details;
     if (type === "object.unknown") {
       return res
-        .status(400)
+        .status(HttpCode.BAD_REQUEST)
         .json({ message: `${err.message.replace(/"/g, "'")}` });
     }
-    return res.status(400).json({ message: "missing fields" });
+    return res.status(HttpCode.BAD_REQUEST).json({ message: "missing fields" });
   }
   next();
 };
@@ -54,13 +69,36 @@ export const validateUpdateFavorite = async (req, res, next) => {
   try {
     await updateFavoriteSchema.validateAsync(req.body);
   } catch (err) {
+    console.log(err);
     const [{ type }] = err.details;
     if (type === "object.unknown") {
       return res
-        .status(400)
+        .status(HttpCode.BAD_REQUEST)
         .json({ message: `${err.message.replace(/"/g, "'")}` });
     }
-    return res.status(400).json({ message: "missing field favorite" });
+    return res
+      .status(HttpCode.BAD_REQUEST)
+      .json({ message: "missing field favorite" });
+  }
+  next();
+};
+
+export const validateId = async (req, res, next) => {
+  if (!Types.ObjectId.isValid(req.params.id)) {
+    return res
+      .status(HttpCode.BAD_REQUEST)
+      .json({ message: "Invalid ObjectId" });
+  }
+  next();
+};
+
+export const validateQuery = async (req, res, next) => {
+  try {
+    await querySchema.validateAsync(req.query);
+  } catch (err) {
+    return res
+      .status(HttpCode.BAD_REQUEST)
+      .json({ message: `Missing ${err.message.replace(/"/g, "'")} field` });
   }
   next();
 };
