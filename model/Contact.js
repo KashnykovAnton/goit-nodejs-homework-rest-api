@@ -1,8 +1,5 @@
-// import {model, Schema} from "mongoose"
-
 import pkg from "mongoose";
 
-// const { model, Schema, ObjectId } = pkg;
 const { model, Schema } = pkg;
 
 const contactSchema = new Schema(
@@ -21,7 +18,6 @@ const contactSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    // _id: { parentId: ObjectId },
   },
   {
     versionKey: false,
@@ -36,13 +32,6 @@ const contactSchema = new Schema(
     toObject: { virtuals: true },
   }
 );
-
-// contactSchema.virtual("status").get(function () {
-//   if (this.age >= 40) {
-//     return "old";
-//   }
-//   return "young";
-// });
 
 const Contact = model("contact", contactSchema);
 
