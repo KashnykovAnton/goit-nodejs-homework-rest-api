@@ -1,4 +1,4 @@
-import { updateContact } from "../../models/contacts";
+import { updateContact } from "../../repository/contacts";
 
 export const controllerUpdateContact = async (req, res, _next) => {
   const { id } = req.params;

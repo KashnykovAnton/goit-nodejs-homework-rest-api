@@ -1,4 +1,4 @@
-import { listContacts } from "../../models/contacts";
+import { listContacts } from "../../repository/contacts";
 
 export const controllerListContacts = async (_req, res, _next) => {
   const contacts = await listContacts();

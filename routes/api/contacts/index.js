@@ -5,11 +5,13 @@ import {
   controllerAddContact,
   controllerRemoveContact,
   controllerUpdateContact,
-} from "../../controllers/contacts";
+  controllerUpdateStatusContact,
+} from "../../../controllers/contacts";
 import {
   validateCreate,
   validateUpdate,
-} from "../../middlewares/validation/contactValidation";
+  validateUpdateFavorite,
+} from "../../../middlewares/validation/contactValidation";
 
 const router = new Router();
 
@@ -22,5 +24,11 @@ router.post("/", validateCreate, controllerAddContact);
 router.delete("/:id", controllerRemoveContact);
 
 router.put("/:id", validateUpdate, controllerUpdateContact);
+
+router.patch(
+  "/:id/favorite",
+  validateUpdateFavorite,
+  controllerUpdateStatusContact
+);
 
 export default router;

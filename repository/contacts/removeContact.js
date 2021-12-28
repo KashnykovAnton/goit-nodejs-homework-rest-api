@@ -1,13 +1,20 @@
-import db from "../../config/db";
-import { ObjectId } from "mongodb";
+import Contact from "../../model/Contact";
 
 export const removeContact = async (contactId) => {
-  const client = await db;
-  const collection = await client.db().collection("contacts");
-  const id = ObjectId(contactId);
-  const { value: result } = await collection.findOneAndDelete({ _id: id });
+  const result = await Contact.findByIdAndRemove(contactId);
   return result;
 };
+
+// import db from "../../config/db";
+// import { ObjectId } from "mongodb";
+
+// export const removeContact = async (contactId) => {
+//   const client = await db;
+//   const collection = await client.db().collection("contacts");
+//   const id = ObjectId(contactId);
+//   const { value: result } = await collection.findOneAndDelete({ _id: id });
+//   return result;
+// };
 
 // import fs from "fs/promises";
 // import path from "path";

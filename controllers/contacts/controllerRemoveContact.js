@@ -1,4 +1,4 @@
-import { removeContact } from "../../models/contacts";
+import { removeContact } from "../../repository/contacts";
 
 export const controllerRemoveContact = async (req, res, _next) => {
   const { id } = req.params;

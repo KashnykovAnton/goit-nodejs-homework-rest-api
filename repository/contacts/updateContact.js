@@ -1,17 +1,28 @@
-import db from "../../config/db";
-import { ObjectId } from "mongodb";
+import Contact from "../../model/Contact";
 
 export const updateContact = async (contactId, body) => {
-  const client = await db;
-  const collection = await client.db().collection("contacts");
-  const id = ObjectId(contactId);
-  const { value: result } = await collection.findOneAndUpdate(
-    { _id: id },
-    { $set: body },
-    { returnDocument: "after" }
+  const result = await Contact.findByIdAndUpdate(
+    contactId,
+    { ...body },
+    { new: "true" }
   );
   return result;
 };
+
+// import db from "../../config/db";
+// import { ObjectId } from "mongodb";
+
+// export const updateContact = async (contactId, body) => {
+//   const client = await db;
+//   const collection = await client.db().collection("contacts");
+//   const id = ObjectId(contactId);
+//   const { value: result } = await collection.findOneAndUpdate(
+//     { _id: id },
+//     { $set: body },
+//     { returnDocument: "after" }
+//   );
+//   return result;
+// };
 
 // import fs from "fs/promises";
 // import path from "path";
