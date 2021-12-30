@@ -2,9 +2,9 @@ import pkg from "mongoose";
 
 const { connect, connection } = pkg;
 
-const uri =
-  "mongodb+srv://goitAntonK:qwert123@contacts.gvesa.mongodb.net/db-contacts";
-// const uri = process.env.URI_DB;
+// const uri =
+// "mongodb+srv://goitAntonK:qwert123@contacts.gvesa.mongodb.net/db-contacts";
+const uri = process.env.URI_DB;
 // console.log(uri);
 
 const db = connect(uri, {
