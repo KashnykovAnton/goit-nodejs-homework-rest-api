@@ -1,14 +1,16 @@
-import listContacts from "./listContacts";
-import getContactById from "./getContact";
-import addContact from "./addContact";
-import removeContact from "./removeContact";
-import updateContact from "./updateContact";
+import { controllerListContacts } from "./controllerListContacts";
+import { controllerGetContactById } from "./controllerGetContact";
+import { controllerAddContact } from "./controllerAddContact";
+import { controllerRemoveContact } from "./controllerRemoveContact";
+import { controllerUpdateContact } from "./controllerUpdateContact";
+import { controllerUpdateStatusContact } from "./controllerUpdateStatusContact";
+
 
 export {
-  listContacts,
-  getContactById,
-  addContact,
-  removeContact,
-  updateContact,
+  controllerListContacts,
+  controllerGetContactById,
+  controllerAddContact,
+  controllerRemoveContact,
+  controllerUpdateContact,
+  controllerUpdateStatusContact
 };
-

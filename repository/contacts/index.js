@@ -3,6 +3,8 @@ import {getContactById} from "./getContact";
 import {addContact} from "./addContact";
 import {removeContact} from "./removeContact";
 import {updateContact} from "./updateContact";
+import {updateStatusContact} from "./updateStatusContact";
+
 
 export {
   listContacts,
@@ -10,4 +12,5 @@ export {
   addContact,
   removeContact,
   updateContact,
+  updateStatusContact
 };
