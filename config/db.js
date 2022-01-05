@@ -1,6 +1,9 @@
 import pkg from "mongoose";
+import dotenv from "dotenv";
 
 const { connect, connection } = pkg;
+
+dotenv.config({ path: "./config/.env" });
 
 const uri = process.env.URI_DB;
 
