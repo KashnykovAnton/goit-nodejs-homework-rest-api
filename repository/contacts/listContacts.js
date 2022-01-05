@@ -5,7 +5,7 @@ export const listContacts = async ({
   sortBy,
   sortByDesc,
   filter,
-  limit = 10,
+  limit = 20,
   skip = 0,
 }) => {
   try {
