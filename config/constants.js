@@ -14,3 +14,8 @@ export const HttpCode = {
 export const Message = {
   NOT_FOUND: "Not found",
 };
+
+export const Role = {
+  ADMIN: "administrator",
+  USER: "user",
+};
