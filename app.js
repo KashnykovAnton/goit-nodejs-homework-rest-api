@@ -25,7 +25,7 @@ app.use((_req, res) => {
 });
 
 app.use((err, _req, res, _next) => {
-  console.log(err);
+  // console.log(err);
   res.status(HttpCode.INTERNAL_SERVER_ERROR).json({
     status: "fail",
     code: HttpCode.INTERNAL_SERVER_ERROR,

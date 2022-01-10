@@ -2,8 +2,9 @@ import { getContactById } from "../../repository/contacts";
 import { HttpCode, Message } from "../../config/constants";
 
 export const controllerGetContactById = async (req, res, _next) => {
+  const { id: userId } = req.user;
   const { id } = req.params;
-  const contact = await getContactById(id);
+  const contact = await getContactById(userId, id);
   console.log(contact); // toObject!!
   if (contact) {
     return res
