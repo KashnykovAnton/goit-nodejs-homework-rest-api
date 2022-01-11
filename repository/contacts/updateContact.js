@@ -3,7 +3,7 @@ import chalk from "chalk";
 
 export const updateContact = async (userId, contactId, body) => {
   try {
-    const result = await Contact.findOnendUpdate(
+    const result = await Contact.findOneAndUpdate(
       {
         _id: contactId,
         owner: userId,

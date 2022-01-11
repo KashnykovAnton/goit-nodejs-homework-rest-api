@@ -3,7 +3,7 @@ import { HttpCode, Message } from "../../config/constants";
 
 export const controllerUpdateStatusContact = async (req, res, _next) => {
   const { id: userId } = req.user;
-  console.log(userId);
+  // console.log(userId);
   const { id } = req.params;
   const updStatusContact = await updateStatusContact(userId, id, req.body);
   if (updStatusContact) {

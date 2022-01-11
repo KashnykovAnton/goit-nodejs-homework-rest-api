@@ -1,10 +1,10 @@
-import {listContacts} from "./listContacts";
-import {getContactById} from "./getContact";
-import {addContact} from "./addContact";
-import {removeContact} from "./removeContact";
-import {updateContact} from "./updateContact";
-import {updateStatusContact} from "./updateStatusContact";
-
+import { listContacts } from "./listContacts";
+import { getContactById } from "./getContact";
+import { addContact } from "./addContact";
+import { removeContact } from "./removeContact";
+import { updateContact } from "./updateContact";
+import { updateStatusContact } from "./updateStatusContact";
+import { getStatisticsContacts } from "./getStatisticsContacts";
 
 export {
   listContacts,
@@ -12,5 +12,6 @@ export {
   addContact,
   removeContact,
   updateContact,
-  updateStatusContact
+  updateStatusContact,
+  getStatisticsContacts,
 };

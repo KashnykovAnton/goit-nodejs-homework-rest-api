@@ -3,7 +3,7 @@ import AuthService from "../../service/auth";
 
 const authService = new AuthService();
 
-export const controllerRegistration = async (req, res, next) => {
+export const controllerSignup = async (req, res, next) => {
   const { email } = req.body;
   const isUserExist = await authService.isUserExist(email);
 
@@ -11,15 +11,15 @@ export const controllerRegistration = async (req, res, next) => {
     return res.status(HttpCode.CONFLICT).json({
       status: "error",
       code: HttpCode.CONFLICT,
-      message: "Email is already exist",
+      message: "Email in use",
     });
   }
 
-  const data = await authService.create(req.body);
+  const user = await authService.createUser(req.body);
 
   res.status(HttpCode.OK).json({
     status: "success",
     code: HttpCode.OK,
-    data,
+    user,
   });
 };

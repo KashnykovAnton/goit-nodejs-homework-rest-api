@@ -26,11 +26,13 @@ const regLimit = /\d+/; //  new RegExp("\\d+")
 const regFilter = /(name|email|phone)?\|?(\bname\b|\bemail\b|\bphone\b)+/;
 
 const querySchema = Joi.object({
+  page: Joi.string().pattern(regLimit).optional(),
   limit: Joi.string().pattern(regLimit).optional(),
   skip: Joi.number().min(0).optional(),
   sortBy: Joi.string().valid("name", "email", "phone").optional(),
   sortByDesc: Joi.string().valid("name", "email", "phone").optional(),
   filter: Joi.string().pattern(regFilter).optional(),
+  favorite: Joi.bool().optional(),
 });
 
 export const validateCreate = async (req, res, next) => {

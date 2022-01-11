@@ -11,9 +11,11 @@ class AuthService {
     return !!user;
   }
 
-  async create(body) {
-    const { id, name, email, role } = await Users.create(body);
-    return { id, name, email, role };
+  async createUser(body) {
+    // const { id, email, subscription } = await Users.create(body);
+    // return { id, email, subscription };
+    const { email, subscription } = await Users.create(body);
+    return { email, subscription };
   }
 
   async getUser(email, password) {
@@ -22,6 +24,14 @@ class AuthService {
     if (!isValidPassword) {
       return null;
     }
+    return user;
+  }
+
+  async getUserOnLogin(data) {
+    // console.log(data);
+    const { email, subscription } = data;
+    const user = { email, subscription };
+    // console.log(user);
     return user;
   }
 
@@ -34,6 +44,13 @@ class AuthService {
 
   async setToken(id, token) {
     await Users.updateToken(id, token);
+  }
+
+  async updateSubscription(userId, subscriptionValue) {
+    const { id, email, subscription } = await Users.findById(userId);
+    const user = { id, email, subscription };
+    user.subscription = subscriptionValue;
+    return user;
   }
 }
 

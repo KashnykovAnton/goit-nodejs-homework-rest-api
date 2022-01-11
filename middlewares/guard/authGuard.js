@@ -15,7 +15,7 @@ const verifyToken = (token) => {
   }
 };
 
-const guard = async (req, res, next) => {
+const authGuard = async (req, res, next) => {
   const token = req.get("authorization")?.split(" ")[1];
   const isValidToken = verifyToken(token);
   console.log(isValidToken);
@@ -39,4 +39,4 @@ const guard = async (req, res, next) => {
   next();
 };
 
-export default guard;
+export {authGuard};
