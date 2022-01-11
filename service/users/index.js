@@ -31,14 +31,7 @@ class AuthService {
     return user;
   }
 
-  async getUserOnLogin(data) {
-    const { email, subscription } = data;
-    const user = { email, subscription };
-    return user;
-  }
-
-  getToken(user) {
-    const { id, email } = user;
+  getToken(id, email) {
     const payload = { id, email };
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "2h" });
     return token;
@@ -49,8 +42,7 @@ class AuthService {
   }
 
   async getCurrentUser(userId) {
-    const data = await findById(userId);
-    const { email, subscription } = data;
+    const { email, subscription } = await findById(userId);
     return { email, subscription };
   }
 
@@ -59,8 +51,7 @@ class AuthService {
       userId,
       subscriptionValue
     );
-    const user = { id, email, subscription };
-    return user;
+    return { id, email, subscription };
   }
 }
 

@@ -7,6 +7,7 @@ import {
   controllerUpdateSubscription,
 } from "../../../controllers/users";
 import { userGuard } from "../../../middlewares/guard/userGuard";
+import { limiter } from "../../../middlewares/limiter/rateLimit";
 import {
   validateSignup,
   validateLogin,
@@ -15,7 +16,11 @@ import {
 
 const router = new Router();
 
-router.post("/signup", validateSignup, controllerSignup);
+router.post(
+  "/signup",
+  [validateSignup, limiter(5 * 60 * 1000, 2)],
+  controllerSignup
+);
 router.post("/login", validateLogin, controllerLogin);
 router.post("/logout", userGuard, controllerLogout);
 router.get("/current", userGuard, controllerCurrentUser);
