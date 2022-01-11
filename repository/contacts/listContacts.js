@@ -10,10 +10,7 @@ export const listContacts = async (
     let sortCriteria = null;
     let result = Contact.find({ owner: userId });
     const skipIndex = (Number(page) - 1) * Number(limit) + Number(skip);
-    // .populate({
-    //   path: "owner",
-    //   select: "name email role",
-    // });
+
     if (sortBy) {
       sortCriteria = { [`${sortBy}`]: 1 };
     }
@@ -25,7 +22,8 @@ export const listContacts = async (
     }
     if (favorite === "true") {
       result = result.find({ favorite: true });
-    } else {
+    }
+    if (favorite === "false") {
       result = result.find({ favorite: false });
     }
 
@@ -34,6 +32,7 @@ export const listContacts = async (
       .limit(Number(limit))
       .skip(skipIndex)
       .sort(sortCriteria);
+
     return { total, contacts: result };
   } catch (error) {
     console.error(chalk.bgRed(error));

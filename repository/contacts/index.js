@@ -4,7 +4,6 @@ import { addContact } from "./addContact";
 import { removeContact } from "./removeContact";
 import { updateContact } from "./updateContact";
 import { updateStatusContact } from "./updateStatusContact";
-import { getStatisticsContacts } from "./getStatisticsContacts";
 
 export {
   listContacts,
@@ -13,5 +12,4 @@ export {
   removeContact,
   updateContact,
   updateStatusContact,
-  getStatisticsContacts,
 };

@@ -6,22 +6,22 @@ import {
   controllerCurrentUser,
   controllerUpdateSubscription,
 } from "../../../controllers/users";
-import { authGuard } from "../../../middlewares/guard/authGuard";
+import { userGuard } from "../../../middlewares/guard/userGuard";
 import {
   validateSignup,
   validateLogin,
   validateUpdateSubscription,
-} from "../../../middlewares/validation/authValidation";
+} from "../../../middlewares/validation/userValidation";
 
 const router = new Router();
 
 router.post("/signup", validateSignup, controllerSignup);
 router.post("/login", validateLogin, controllerLogin);
-router.post("/logout", authGuard, controllerLogout);
-router.get("/current", authGuard, controllerCurrentUser);
+router.post("/logout", userGuard, controllerLogout);
+router.get("/current", userGuard, controllerCurrentUser);
 router.patch(
   "/",
-  [authGuard, validateUpdateSubscription],
+  [userGuard, validateUpdateSubscription],
   controllerUpdateSubscription
 );
 

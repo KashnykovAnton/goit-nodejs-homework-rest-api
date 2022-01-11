@@ -19,7 +19,6 @@ export const validateSignup = async (req, res, next) => {
   try {
     await signupSchema.validateAsync(req.body);
   } catch (err) {
-    console.log(err);
     return res
       .status(HttpCode.BAD_REQUEST)
       .json({ message: `${err.message.replace(/"/g, "'")}` });
@@ -31,7 +30,6 @@ export const validateLogin = async (req, res, next) => {
   try {
     await loginSchema.validateAsync(req.body);
   } catch (err) {
-    console.log(err);
     return res
       .status(HttpCode.BAD_REQUEST)
       .json({ message: `${err.message.replace(/"/g, "'")}` });
@@ -43,7 +41,6 @@ export const validateUpdateSubscription = async (req, res, next) => {
   try {
     await updateSubscriptionSchema.validateAsync(req.body);
   } catch (err) {
-    console.log(err);
     return res
       .status(HttpCode.BAD_REQUEST)
       .json({ message: `${err.message.replace(/"/g, "'")}` });

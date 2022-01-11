@@ -3,7 +3,6 @@ import { HttpCode } from "../../config/constants";
 
 export const controllerListContacts = async (req, res, _next) => {
   const { id: userId } = req.user;
-  // console.log(req.query);
   const contacts = await listContacts(userId, req.query);
   res
     .status(HttpCode.OK)

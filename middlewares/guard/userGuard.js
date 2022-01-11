@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import repositoryUsers from "../../repository/users";
+import { findById } from "../../repository/users";
 import { HttpCode } from "../../config/constants";
 import dotenv from "dotenv";
 
@@ -15,10 +15,9 @@ const verifyToken = (token) => {
   }
 };
 
-const authGuard = async (req, res, next) => {
+const userGuard = async (req, res, next) => {
   const token = req.get("authorization")?.split(" ")[1];
   const isValidToken = verifyToken(token);
-  console.log(isValidToken);
   if (!isValidToken) {
     return res.status(HttpCode.UNAUTHORIZED).json({
       status: "error",
@@ -27,7 +26,7 @@ const authGuard = async (req, res, next) => {
     });
   }
   const payload = jwt.decode(token);
-  const user = await repositoryUsers.findById(payload.id);
+  const user = await findById(payload.id);
   if (!user || user.token !== token) {
     return res.status(HttpCode.UNAUTHORIZED).json({
       status: "error",
@@ -35,8 +34,8 @@ const authGuard = async (req, res, next) => {
       message: "Not authorized",
     });
   }
-  req.user = user; // res.locals.user = user
+  req.user = user;
   next();
 };
 
-export {authGuard};
+export { userGuard };

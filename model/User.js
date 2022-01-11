@@ -1,15 +1,10 @@
 import pkg from "mongoose";
 import bcrypt from "bcryptjs";
-// import { Role } from "../config/constants";
 
 const { Schema, model } = pkg;
 
 const userSchema = new Schema(
   {
-    // name: {
-    //   type: String,
-    //   default: "Guest",
-    // },
     email: {
       type: String,
       required: [true, "Email is required"],
@@ -28,14 +23,6 @@ const userSchema = new Schema(
       enum: ["starter", "pro", "business"],
       default: "starter",
     },
-    // role: {
-    //   type: String,
-    //   enum: {
-    //     values: Object.values(Role),
-    //     message: "Role is not allowed",
-    //   },
-    //   default: Role.USER,
-    // },
     token: {
       type: String,
       default: null,
@@ -46,7 +33,7 @@ const userSchema = new Schema(
     timestamps: true,
     toJSON: {
       virtuals: true,
-      transform: function (doc, ret) {
+      transform: function (_doc, ret) {
         delete ret._id;
         return ret;
       },

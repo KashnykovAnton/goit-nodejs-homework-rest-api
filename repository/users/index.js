@@ -8,7 +8,7 @@ const findByEmail = async (email) => {
   return await User.findOne({ email });
 };
 
-const create = async (body) => {
+const createNewUser = async (body) => {
   const user = new User(body);
   return await user.save();
 };
@@ -17,9 +17,12 @@ const updateToken = async (id, token) => {
   return await User.updateOne({ _id: id }, { token });
 };
 
-export default {
-  findById,
-  findByEmail,
-  create,
-  updateToken,
+const updateSubs = async (id, subscription) => {
+  return await User.findOneAndUpdate(
+    { _id: id },
+    { subscription },
+    { new: "true" }
+  );
 };
+
+export { findById, findByEmail, createNewUser, updateToken, updateSubs };
