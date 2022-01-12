@@ -14,23 +14,27 @@ import {
   validateId,
   validateQuery,
 } from "../../../middlewares/validation/contactValidation";
+import { userGuard } from "../../../middlewares/guard/userGuard";
 
 const router = new Router();
 
-router.get("/", validateQuery, controllerListContacts);
+router.get("/", [userGuard, validateQuery], controllerListContacts);
 
-router.get("/:id", validateId, controllerGetContactById);
+router.get("/:id", [userGuard, validateId], controllerGetContactById);
 
-router.post("/", validateCreate, controllerAddContact);
+router.post("/", [userGuard, validateCreate], controllerAddContact);
 
-router.delete("/:id", validateId, controllerRemoveContact);
+router.delete("/:id", [userGuard, validateId], controllerRemoveContact);
 
-router.put("/:id", validateId, validateUpdate, controllerUpdateContact);
+router.put(
+  "/:id",
+  [userGuard, validateId, validateUpdate],
+  controllerUpdateContact
+);
 
 router.patch(
   "/:id/favorite",
-  validateId,
-  validateUpdateFavorite,
+  [userGuard, validateId, validateUpdateFavorite],
   controllerUpdateStatusContact
 );
 

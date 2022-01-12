@@ -1,6 +1,6 @@
 import pkg from "mongoose";
 
-const { model, Schema } = pkg;
+const { model, Schema, SchemaTypes } = pkg;
 
 const contactSchema = new Schema(
   {
@@ -18,13 +18,18 @@ const contactSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: SchemaTypes.ObjectId,
+      ref: "user",
+      required: true,
+    },
   },
   {
     versionKey: false,
     timestamps: true,
     toJSON: {
       virtuals: true,
-      transform: function (doc, ret) {
+      transform: function (_doc, ret) {
         delete ret._id;
         return ret;
       },

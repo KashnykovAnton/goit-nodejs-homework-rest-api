@@ -1,10 +1,13 @@
 import Contact from "../../model/Contact";
 import chalk from "chalk";
 
-export const updateStatusContact = async (contactId, body) => {
+export const updateStatusContact = async (userId, contactId, body) => {
   try {
-    const result = await Contact.findByIdAndUpdate(
-      contactId,
+    const result = await Contact.findOneAndUpdate(
+      {
+        _id: contactId,
+        owner: userId,
+      },
       { ...body },
       { new: "true" }
     );

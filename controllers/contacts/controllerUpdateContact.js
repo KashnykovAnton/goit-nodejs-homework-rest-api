@@ -2,12 +2,13 @@ import { updateContact } from "../../repository/contacts";
 import { HttpCode, Message } from "../../config/constants";
 
 export const controllerUpdateContact = async (req, res, _next) => {
+  const { id: userId } = req.user;
   const { id } = req.params;
-  const updContact = await updateContact(id, req.body);
-  if (updContact) {
+  const contact = await updateContact(userId, id, req.body);
+  if (contact) {
     return res
       .status(HttpCode.OK)
-      .json({ status: "success", code: HttpCode.OK, data: { updContact } });
+      .json({ status: "success", code: HttpCode.OK, data: { contact } });
   }
   res.status(HttpCode.NOT_FOUND).json({
     status: "error",
