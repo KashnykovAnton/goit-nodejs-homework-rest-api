@@ -17,3 +17,6 @@ export const Message = {
 };
 
 export const LIMIT_JSON = 5000;
+
+export const CLOUD_FOLDER_AVATARS = "avatars";
+

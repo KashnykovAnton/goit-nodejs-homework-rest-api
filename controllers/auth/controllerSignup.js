@@ -1,5 +1,5 @@
 import { HttpCode } from "../../config/constants";
-import AuthService from "../../service/users";
+import AuthService from "../../service/auth";
 
 const authService = new AuthService();
 
@@ -17,9 +17,9 @@ export const controllerSignup = async (req, res, next) => {
 
   const user = await authService.createUser(req.body);
 
-  res.status(HttpCode.OK).json({
+  res.status(HttpCode.CREATED).json({
     status: "success",
-    code: HttpCode.OK,
+    code: HttpCode.CREATED,
     user,
   });
 };

@@ -25,4 +25,15 @@ const updateSubs = async (id, subscription) => {
   );
 };
 
-export { findById, findByEmail, createNewUser, updateToken, updateSubs };
+const updateAvatar = async (id, avatarURL, idAvatarCloud = null) => {
+  return await User.updateOne({ _id: id }, { avatarURL, idAvatarCloud });
+};
+
+export {
+  findById,
+  findByEmail,
+  createNewUser,
+  updateToken,
+  updateSubs,
+  updateAvatar,
+};

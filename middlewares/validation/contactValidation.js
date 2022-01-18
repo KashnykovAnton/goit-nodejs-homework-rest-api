@@ -23,7 +23,7 @@ const updateFavoriteSchema = Joi.object({
 });
 
 const regLimit = /\d+/;
-const regFilter = /(name|email|phone)?\|?(\bname\b|\bemail\b|\bphone\b)+/; //Остался вопрос - решить!!!
+const regFilter = /(name|email|phone)?\|?(\bname\b|\bemail\b|\bphone\b)+/; // Остался вопрос - решить!!!
 
 const querySchema = Joi.object({
   page: Joi.string().pattern(regLimit).optional(),

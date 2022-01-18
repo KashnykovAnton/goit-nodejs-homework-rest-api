@@ -1,13 +1,23 @@
-import { controllerSignup } from "./controllerSignup";
-import { controllerLogin } from "./controllerLogin";
-import { controllerLogout } from "./controllerLogout";
-import { controllerCurrentUser } from "./controllerCurrentUser";
-import { controllerUpdateSubscription } from "./controllerUpdateSubscription";
+import { HttpCode } from "../../config/constants";
+import {
+  UploadFileService,
+  // LocalFileStorage,
+  CloudFileStorage,
+} from "../../service/file-storage";
 
-export {
-  controllerSignup,
-  controllerLogin,
-  controllerLogout,
-  controllerCurrentUser,
-  controllerUpdateSubscription,
+const uploadAvatar = async (req, res, _next) => {
+  const uploadService = new UploadFileService(
+    // LocalFileStorage,
+    CloudFileStorage,
+    req.file,
+    req.user
+  );
+
+  const avatarUrl = await uploadService.updateAvatar();
+
+  res
+    .status(HttpCode.OK)
+    .json({ status: "success", code: HttpCode.OK, data: { avatarUrl } });
 };
+
+export { uploadAvatar };
