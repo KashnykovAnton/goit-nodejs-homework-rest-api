@@ -28,7 +28,7 @@ export const listContacts = async (
     }
 
     result = await result
-      .sort({ _id: 1 })
+      // .sort({ _id: 1 })
       .limit(Number(limit))
       .skip(skipIndex)
       .sort(sortCriteria);

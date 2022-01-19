@@ -18,8 +18,8 @@ class AuthService {
   }
 
   async createUser(body) {
-    const { email, subscription } = await createNewUser(body);
-    return { email, subscription };
+    const { email, subscription, avatarURL } = await createNewUser(body);
+    return { email, subscription, avatarURL };
   }
 
   async getUser(email, password) {

@@ -15,7 +15,7 @@ const verifyToken = (token) => {
   }
 };
 
-const userGuard = async (req, res, next) => {
+const authGuard = async (req, res, next) => {
   const token = req.get("authorization")?.split(" ")[1];
   const isValidToken = verifyToken(token);
   if (!isValidToken) {
@@ -38,4 +38,4 @@ const userGuard = async (req, res, next) => {
   next();
 };
 
-export { userGuard };
+export { authGuard };
