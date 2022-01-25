@@ -12,13 +12,13 @@ import {
   validateSignup,
   validateLogin,
   validateUpdateSubscription,
-} from "../../../middlewares/validation/userValidation";
+} from "../../../middlewares/validation/authValidation";
 
 const router = new Router();
 
 router.post(
   "/signup",
-  [validateSignup, limiter(5 * 60 * 1000, 2)],
+  [validateSignup, limiter(5 * 60 * 1000, 5)],
   controllerSignup
 );
 router.post("/login", validateLogin, controllerLogin);
