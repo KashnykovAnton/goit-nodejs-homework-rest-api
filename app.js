@@ -22,6 +22,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/users", usersRouter);
 
 app.use((_req, res) => {
+  console.log("ERROR");
   res.status(HttpCode.NOT_FOUND).json({
     status: "error",
     code: HttpCode.NOT_FOUND,

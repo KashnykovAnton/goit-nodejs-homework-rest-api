@@ -1,6 +1,7 @@
 import path from "path";
 import fs from "fs/promises";
 import { updateAvatar } from "../../repository/users";
+import { Port } from "../../config/constants";
 
 class LocalStorage {
   constructor(file, user) {
@@ -12,11 +13,11 @@ class LocalStorage {
 
   async save() {
     const destination = path.join(this.folderAvatars, this.userId);
-    console.log("destination: ", destination);
     await fs.mkdir(destination, { recursive: true });
     await fs.rename(this.filePath, path.join(destination, this.filename));
-    const avatarUrl = path.normalize(path.join(this.userId, this.filename));
-    console.log("avatarUrl: ", avatarUrl);
+    const avatarUrl =
+      `http://localhost:${Port}/` +
+      path.normalize(path.join(this.userId, this.filename));
     await updateAvatar(this.userId, avatarUrl);
     return avatarUrl;
   }

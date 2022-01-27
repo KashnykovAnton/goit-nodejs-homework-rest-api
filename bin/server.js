@@ -1,8 +1,9 @@
 import { mkdir } from "fs/promises";
 import app from "../app";
 import db from "../config/db";
+import {Port} from "../config/constants"
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || Port;
 
 // Привязка к DataBase. Нет connection к DB - бессмысенно запускать сервер.
 db.then(() => {
